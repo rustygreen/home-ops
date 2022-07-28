@@ -37,7 +37,7 @@ spec:
     ingress:
       enabled: true
       ingressClassName: "nginx"
-      host: "longhorn.${PUBLIC_DOMAIN}"
+      host: "longhorn.${SECRET_DOMAIN}"
       tls: true
       tlsSecret: "longhorn-tls"
       annotations:

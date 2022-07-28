@@ -22,4 +22,4 @@ spec:
           - containerPort: 80
         env:
           - name: RPC_CONFIG
-            value: '{"servers": [{"title": "Basement Pi","url": "https://pi-basement.${PUBLIC_DOMAIN}","pinLabels": {"11": "Cows water","32": "Cows water drain","15": "Chickens water","36": "Chickens water drain"}}]}'
+            value: '{"servers": [{"title": "Basement Pi","url": "https://pi-basement.${SECRET_DOMAIN}","pinLabels": {"11": "Cows water","32": "Cows water drain","15": "Chickens water","36": "Chickens water drain"}}]}'
