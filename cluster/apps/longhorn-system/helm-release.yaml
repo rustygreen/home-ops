@@ -36,7 +36,7 @@ spec:
       storageMinimalAvailablePercentage: 10
     ingress:
       enabled: true
-      ingressClassName: "traefik"
+      ingressClassName: "nginx"
       host: "longhorn.${PUBLIC_DOMAIN}"
       tls: true
       tlsSecret: "longhorn-tls"
@@ -44,4 +44,4 @@ spec:
         hajimari.io/enable: "true"
         hajimari.io/icon: "database" # Hajimari dashboard custom icon
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure" # Use HTTPS
-        cert-manager.io/cluster-issuer: "${CERT_MANAGER_CLUSTER_ISSUER}" # Request SSL Certificate
+        cert-manager.io/cluster-issuer: "letsencrypt-staging" # Request SSL Certificate
