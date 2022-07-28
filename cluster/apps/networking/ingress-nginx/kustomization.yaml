@@ -6,7 +6,7 @@ resources:
   # TODO: Add the dashboard in - @rusty.green
   # - dashboard
   - helm-release.yaml
-  - certificate.yaml
+  - wildcard-certificate.yaml
 configMapGenerator:
   - name: cloudflare-proxied-networks
     files:
