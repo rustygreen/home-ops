@@ -33,7 +33,7 @@ spec:
       defaultDataPath: /mnt/storage
       replicaAutoBalance: "best-effort"
       dataLocality: "best-effort"
-      storageMinimalAvailablePercentage: 10
+      storageMinimalAvailablePercentage: 0
     ingress:
       enabled: true
       ingressClassName: "nginx"
