@@ -43,4 +43,4 @@ spec:
       annotations:
         hajimari.io/enable: "true"
         hajimari.io/icon: "database" # Hajimari dashboard custom icon
-        cert-manager.io/cluster-issuer: "letsencrypt-staging" # Request SSL Certificate
+        cert-manager.io/cluster-issuer: "${CERT_CLUSTER_ISSUER}" # Request SSL Certificate
