@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: longhorn
       namespace: longhorn-system
-    - name: nginx
+    - name: ingress-nginx
       namespace: networking
   maxHistory: 3
   interval: 10m0s
