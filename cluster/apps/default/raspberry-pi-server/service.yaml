@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: raspberry-pi-server
+  namespace: default
 spec:
   ports:
     - port: 5000
