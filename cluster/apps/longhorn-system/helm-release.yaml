@@ -39,8 +39,6 @@ spec:
       ingressClassName: "nginx"
       host: "longhorn.${SECRET_DOMAIN}"
       tls: true
-      tlsSecret: "longhorn-tls"
       annotations:
         hajimari.io/enable: "true"
-        hajimari.io/icon: "database" # Hajimari dashboard custom icon
-        cert-manager.io/cluster-issuer: "${CERT_CLUSTER_ISSUER}" # Request SSL Certificate
+        hajimari.io/icon: "database"
