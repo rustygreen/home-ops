@@ -6,3 +6,4 @@ resources:
   - echo-server
   - hajimari
   - raspberry-pi-client
+  - raspberry-pi-server
