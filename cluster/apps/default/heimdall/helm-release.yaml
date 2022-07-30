@@ -1,0 +1,25 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: heimdall
+  namespace: default
+spec:
+  interval: 1h
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: heimdall
+      version: 8.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  values:
+    env:
+      TZ: ${TIMEZONE}
+    persistence:
+      config:
+        enabled: true
+        type: pvc
+        existingClaim: heimdall-config
