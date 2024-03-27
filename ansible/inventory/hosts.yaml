@@ -1,0 +1,8 @@
+---
+kubernetes:
+  children:
+    controllers:
+      hosts:
+        "mini-3":
+          ansible_user: "root"
+          ansible_host: "192.168.7.138"
