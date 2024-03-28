@@ -6,20 +6,20 @@ metadata:
   namespace: flux-system
 data:
   TIMEZONE: "America/New_York"
-  CLUSTER_CIDR: "10.69.0.0/16"
 
   # LAN
   NODE_CIDR: "192.168.7.0/24"
 
   # K8s
-  K8S_GATEWAY_IP: 192.168.7.203
+  CLUSTER_CIDR: "10.69.0.0/16"
+  K8S_GATEWAY_IP: "192.168.7.203"
 
   # Cilium
-  INGRESS_INT_LB_IP: 192.168.7.201
-  INGRESS_EXT_LB_IP: 192.168.7.202
-  BLOCKY_LB_IP: 192.168.7.210
+  INGRESS_INT_LB_IP: "192.168.7.201"
+  INGRESS_EXT_LB_IP: "192.168.7.202"
+  BLOCKY_LB_IP: "192.168.7.210"
 
   # Other
-  NFS_SERVER_IP: 192.168.1.49
-  NFS_SERVER_SHARE: /volume1/storage/homelab-production
-  NFS_PATH_PATTERN: ${.PVC.annotations.nfs.io/storage-path}
+  # NFS_SERVER_IP: 192.168.1.49
+  # NFS_SERVER_SHARE: /volume1/storage/homelab-production
+  # NFS_PATH_PATTERN: ${.PVC.annotations.nfs.io/storage-path}
