@@ -31,5 +31,5 @@ spec:
       name: nfs-subdir
       # Example: "${.PVC.namespace}-${.PVC.name}" or "${.PVC.namespace}/${.PVC.annotations.nfs.io/storage-path}"
       # pathPattern: ${NFS_SUBDIR_EXTERNAL_PROVISIONER_PATH:=${.PVC.namespace}-${.PVC.name}}
-      pathPattern: ${.PVC.annotations.nfs.io/storage-path}
+      pathPattern: "${DUMMY=${.PVC.annotations.nfs.io/storage-path}}"
       reclaimPolicy: Retain
