@@ -20,6 +20,5 @@ data:
   BLOCKY_LB_IP: "192.168.7.210"
 
   # Other
-  # NFS_SERVER_IP: "192.168.1.49"
-  # NFS_SERVER_SHARE: "/volume1/storage/homelab-production"
-  # NFS_PATH_PATTERN: "${.PVC.annotations.nfs.io/storage-path}"
+  NFS_SERVER_IP: "192.168.1.49"
+  NFS_SERVER_SHARE: "/volume1/storage/homelab-production"
