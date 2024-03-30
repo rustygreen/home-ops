@@ -3,6 +3,17 @@ kubernetes:
   children:
     controllers:
       hosts:
+        "mini-1":
+          ansible_user: "root"
+          ansible_host: "192.168.7.68"
+        "mini-2":
+          ansible_user: "root"
+          ansible_host: "192.168.7.14"
         "mini-3":
           ansible_user: "root"
           ansible_host: "192.168.7.138"
+    workers:
+      hosts:
+        "rasp-1":
+          ansible_user: "pi"
+          ansible_host: "192.168.7.130"

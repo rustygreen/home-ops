@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: raspberry-pi-server-basement
+  namespace: home
+  annotations:
+    nginx.ingress.kubernetes.io/custom-http-errors: "418"
+spec:
+  rules:
+    - host: pi-basement.${SECRET_DOMAIN}
+      http:
+        paths:
+          - backend:
+              service:
+                name: raspberry-pi-server-basement
+                port:
+                  number: 5000
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - pi-basement.${SECRET_DOMAIN}

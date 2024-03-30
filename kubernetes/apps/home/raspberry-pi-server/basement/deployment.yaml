@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raspberry-pi-server-basement
+  namespace: home
+spec:
+  selector:
+    matchLabels:
+      app: raspberry-pi-server-basement
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: raspberry-pi-server-basement
+    spec:
+      containers:
+        - name: raspberry-pi-server
+          image: ghcr.io/rustygreen/raspberry-pi-server:1.0.4
+          ports:
+            - containerPort: &port 5000
+          securityContext:
+            privileged: true
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: *port
+        initialDelaySeconds: 5
+        periodSeconds: 60
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: site
+                    operator: In
+                    values:
+                      - basement
+      tolerations:
+        - key: site
+          operator: Equal
+          value: basement
+          effect: NoSchedule
