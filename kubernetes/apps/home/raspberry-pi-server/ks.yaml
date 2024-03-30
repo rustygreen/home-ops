@@ -5,7 +5,7 @@ metadata:
   name: &app raspberry-pi-server-basement
   namespace: flux-system
 spec:
-  targetNamespace: cert-manager
+  targetNamespace: home
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
