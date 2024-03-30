@@ -12,3 +12,4 @@ resources:
   - ./openebs.yaml
   - ./stakater.yaml
   - ./nfs-subdir-external-provisioner.yaml
+  - ./emqx.yaml

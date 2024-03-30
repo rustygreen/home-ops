@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./raspberry-pi-server/ks.yaml
-  # - ./raspberry-pi-client/ks.yaml
+  - ./raspberry-pi-client/ks.yaml
