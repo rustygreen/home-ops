@@ -13,3 +13,4 @@ resources:
   - ./stakater.yaml
   - ./nfs-subdir-external-provisioner.yaml
   - ./emqx.yaml
+  - ./node-feature-discovery.yaml
