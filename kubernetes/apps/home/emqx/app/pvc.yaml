@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: emqx
+  namespace: home
+  annotations:
+      nfs.io/storage-path: "emqx"
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs-subdir
+  resources:
+    requests:
+      storage: 1Gi
