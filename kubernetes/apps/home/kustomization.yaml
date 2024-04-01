@@ -6,3 +6,4 @@ resources:
   - ./raspberry-pi-server/ks.yaml
   - ./raspberry-pi-client/ks.yaml
   - ./emqx/ks.yaml
+  - ./zwave-js-ui/ks.yaml
