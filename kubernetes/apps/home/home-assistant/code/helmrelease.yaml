@@ -72,7 +72,7 @@ spec:
     ingress:
       app:
         enabled: true
-        className: nginx
+        className: internal
         hosts:
           - host: &host home-code.${SECRET_DOMAIN}
             paths:
