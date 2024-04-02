@@ -30,7 +30,7 @@ spec:
           app:
             image:
               repository: homeassistant/home-assistant
-              tag: 2023.2.3 #2024.3.3
+              tag: 2024.3.3
             env:
             - name: TZ
               value: ${TIMEZONE}
@@ -79,12 +79,12 @@ spec:
               - "/config/.vscode"
               - --extensions-dir
               - "/config/.vscode"
-        pod:
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
+        # pod:
+        #   securityContext:
+        #     runAsUser: 568
+        #     runAsGroup: 568
+        #     fsGroup: 568
+        #     fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: *app
