@@ -22,6 +22,14 @@ spec:
     remediation:
       retries: 3
   values:
+    defaultPodOptions:
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: "OnRootMismatch"
     controllers:
       home-assistant:
         annotations:
@@ -79,12 +87,6 @@ spec:
               - "/config/.vscode"
               - --extensions-dir
               - "/config/.vscode"
-        pod:
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: *app
