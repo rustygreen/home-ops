@@ -30,7 +30,7 @@ spec:
           app:
             image:
               repository: homeassistant/home-assistant
-              tag: 2024.3.3
+              tag: 2023.2.3 #2024.3.3
             env:
             - name: TZ
               value: ${TIMEZONE}
