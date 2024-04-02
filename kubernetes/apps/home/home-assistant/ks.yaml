@@ -14,7 +14,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
-  wait: false # TODO: Change this back
+  wait: true
   interval: 30m
   retryInterval: 1m
   timeout: 5m
