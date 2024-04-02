@@ -23,13 +23,11 @@ spec:
       retries: 3
   values:
     defaultPodOptions:
-      dnsPolicy: ClusterFirstWithHostNet
-      hostNetwork: true
       securityContext:
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
-        fsGroupChangePolicy: "OnRootMismatch"
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+        fsGroupChangePolicy: OnRootMismatch
     controllers:
       home-assistant:
         annotations:
@@ -38,7 +36,7 @@ spec:
           app:
             image:
               repository: homeassistant/home-assistant
-              tag: 2024.3.3
+              tag: 2024.3.3@sha256:a4c2b7a75e8d5168a9e9f78d9d9f7f36435e2da07899e7faf5f6e3cdc4eebe56
             env:
             - name: TZ
               value: ${TIMEZONE}
@@ -69,70 +67,38 @@ spec:
                 enabled: false
             resources:
               requests:
-                cpu: 50m
-                memory: 400Mi
+                cpu: 10m
+                memory: 128Mi
               limits:
-                memory: 700Mi
-          codeserver:
-            image:
-              repository: ghcr.io/coder/code-server
-              tag: 4.22.1
-            env:
-              TZ: ${TIMEZONE}
-            args:
-              - "/config"
-              - --auth
-              - "none"
-              - --user-data-dir
-              - "/config/.vscode"
-              - --extensions-dir
-              - "/config/.vscode"
+                memory: 1Gi
+            securityContext:
+              privileged: true
     service:
       app:
         controller: *app
-        nameOverride: *app
         type: LoadBalancer
-        annotations:
-          io.cilium/lb-ipam-ips: ${HOME_ASSISTANT_LB_IP}
+        loadBalancerIP: ${HOME_ASSISTANT_LB_IP}
+        externalTrafficPolicy: Local
         ports:
           http:
             port: 8123
-      codeserver:
-        controller: *app
-        type: ClusterIP
-        ports:
-          http:
-            enabled: true
-            port: 8080
     ingress:
       app:
+        enabled: true
         className: internal
         hosts:
-          - host: &host home.${SECRET_DOMAIN}
+          - host: &host "home.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
                   identifier: app
                   port: http
         tls:
-          - hosts: [*host]
-      codeserver:
-        className: internal
-        hosts:
-          - host: &host home-code.${SECRET_DOMAIN}
-            paths:
-            - path: /
-              service:
-                identifier: codeserver
-                port: http
-        tls:
-          - hosts: [*host]
+          - hosts:
+              - *host
     persistence:
       config:
+        enabled: true
         existingClaim: home-assistant-config
-        advancedMounts:
-          home-assistant:
-            app:
-              - path: /config
-            codeserver:
-              - path: /config
+        globalMounts:
+          - path: /config
