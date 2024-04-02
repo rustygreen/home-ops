@@ -22,21 +22,16 @@ spec:
     remediation:
       retries: 3
   values:
-    defaultPodOptions:
-      securityContext:
-        runAsUser: 0
-        runAsGroup: 0
-        fsGroup: 0
-        fsGroupChangePolicy: OnRootMismatch
     controllers:
       home-assistant:
         annotations:
           reloader.stakater.com/auto: "true"
+
         containers:
           app:
             image:
-              repository: homeassistant/home-assistant
-              tag: 2024.3.3@sha256:a4c2b7a75e8d5168a9e9f78d9d9f7f36435e2da07899e7faf5f6e3cdc4eebe56
+              repository: ghcr.io/home-assistant/home-assistant
+              tag: 2024.3.3
             env:
             - name: TZ
               value: ${TIMEZONE}
@@ -67,27 +62,26 @@ spec:
                 enabled: false
             resources:
               requests:
-                cpu: 10m
-                memory: 128Mi
+                cpu: 47m
+                memory: 2Gi
               limits:
-                memory: 1Gi
-            securityContext:
-              privileged: true
+                memory: 2Gi
+
     service:
       app:
-        controller: *app
+        controller: home-assistant
         type: LoadBalancer
         loadBalancerIP: ${HOME_ASSISTANT_LB_IP}
-        externalTrafficPolicy: Local
         ports:
           http:
             port: 8123
+
     ingress:
       app:
         enabled: true
-        className: internal
+        className: "internal"
         hosts:
-          - host: &host "home.${SECRET_DOMAIN}"
+          - host: &hostName home.${SECRET_DOMAIN}
             paths:
               - path: /
                 service:
@@ -95,10 +89,12 @@ spec:
                   port: http
         tls:
           - hosts:
-              - *host
+              - *hostName
+
     persistence:
       config:
-        enabled: true
         existingClaim: home-assistant-config
-        globalMounts:
-          - path: /config
+        advancedMounts:
+          home-assistant:
+            app:
+              - path: /config
