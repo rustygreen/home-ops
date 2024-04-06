@@ -1,0 +1,45 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: photoprism-config
+  namespace: media
+  annotations:
+      nfs.io/storage-path: "photoprism-config"
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs-subdir
+  resources:
+    requests:
+      storage: 250Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: photoprism-photos
+  namespace: media
+  annotations:
+      nfs.io/storage-path: "photos"
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs-subdir
+  resources:
+    requests:
+      storage: 950Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: photoprism-photos-import
+  namespace: media
+  annotations:
+      nfs.io/storage-path: "photos-import"
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs-subdir
+  resources:
+    requests:
+      storage: 500Gi
