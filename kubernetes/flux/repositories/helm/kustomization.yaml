@@ -14,3 +14,4 @@ resources:
   - ./nfs-subdir-external-provisioner.yaml
   - ./emqx.yaml
   - ./node-feature-discovery.yaml
+  - ./bitnami.yaml
