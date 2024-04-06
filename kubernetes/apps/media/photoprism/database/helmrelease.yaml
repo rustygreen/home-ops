@@ -22,6 +22,8 @@ spec:
       retries: 3
   values:
     replicaCount: 3
+    global:
+      storageClass: openebs-hostpath
     db:
       name: photoprism
       user: photoprism
