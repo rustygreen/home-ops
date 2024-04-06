@@ -26,3 +26,5 @@ spec:
       name: photoprism
       user: photoprism
       password: ${SECRET_PHOTOPRISM_MARIADB_PASSWORD}
+    persistence:
+      storageClass: openebs-hostpath
