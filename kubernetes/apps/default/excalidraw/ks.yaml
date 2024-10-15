@@ -5,7 +5,7 @@ metadata:
   name: &app excalidraw
   namespace: flux-system
 spec:
-  targetNamespace: network
+  targetNamespace: default
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
