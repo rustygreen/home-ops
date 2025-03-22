@@ -18,26 +18,52 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: &app immich
-  namespace: flux-system
-spec:
-  targetNamespace: media
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/media/immich/app
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: home-kubernetes
-  wait: true
-  interval: 30m
-  retryInterval: 1m
-  timeout: 5m
+  healthChecks:
+    - apiVersion: v1
+      kind: Service
+      name: imich-postgres-rw
+      namespace: media
+    - apiVersion: v1
+      kind: Secret
+      name: imich-postgres-app
+      namespace: media
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      name: imich-postgres-1
+      namespace: media
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      name: imich-postgres-2
+      namespace: media
+    - apiVersion: v1
+      kind: Pod
+      # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
+      name: imich-postgres-3
+      namespace: media
   dependsOn:
-    - name: nfs-subdir-external-provisioner
-    - name: immich-database
+    - name: cloudnative-pg
+---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1
+# kind: Kustomization
+# metadata:
+#   name: &app immich
+#   namespace: flux-system
+# spec:
+#   targetNamespace: media
+#   commonMetadata:
+#     labels:
+#       app.kubernetes.io/name: *app
+#   path: ./kubernetes/apps/media/immich/app
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: home-kubernetes
+#   wait: true
+#   interval: 30m
+#   retryInterval: 1m
+#   timeout: 5m
+#   dependsOn:
+#     - name: nfs-subdir-external-provisioner
+#     - name: immich-database

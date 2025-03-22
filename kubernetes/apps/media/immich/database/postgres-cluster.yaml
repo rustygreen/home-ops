@@ -1,12 +1,12 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: postgres
-  namespace: keycloak
+  name: immich-postgres
+  namespace: media
 spec:
   instances: 3
   storage:
-    size: 50Gi
+    size: 100Gi
     storageClass: openebs-hostpath
   bootstrap:
     initdb:
