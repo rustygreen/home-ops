@@ -7,10 +7,10 @@ spec:
   instances: 3
   storage:
     size: 50Gi
-    storageClass: ${POSTGRES_STORAGE_CLASS:=''}
+    storageClass: openebs-hostpath
   bootstrap:
     initdb:
-      database: keycloak
-      owner: keycloak
+      database: imich
+      owner: imich
   monitoring:
     enablePodMonitor: true
