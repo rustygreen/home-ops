@@ -1,0 +1,94 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app imich
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: immich
+      version: 0.9.1
+      sourceRef:
+        kind: HelmRepository
+        name: immich
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    image:
+      tag: "v1.129.0"
+
+    postgres:
+      enabled: false
+
+    redis:
+      enabled: true
+
+    immich:
+      metrics:
+        enabled: true
+      persistence:
+        library:
+          existingClaim: photo-library
+
+    env:
+      MACHINE_LEARNING_PRELOAD__CLIP: "ViT-H-14-378-quickgelu__dfn5b"
+      DB_HOSTNAME:
+        valueFrom:
+          secretKeyRef:
+            name: immich-postgres-app
+            key: host
+      DB_USERNAME:
+        valueFrom:
+          secretKeyRef:
+            name: immich-postgres-app
+            key: user
+      DB_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: immich-postgres-app
+            key: password
+      DB_DATABASE_NAME:
+        valueFrom:
+          secretKeyRef:
+            name: immich-postgres-app
+            key: dbname
+      TZ: ${TIMEZONE}
+
+    server:
+      resources:
+        requests:
+          cpu: 1500m
+          memory: 2048M
+      ingress:
+        main:
+          enabled: true
+          className: external
+          annotations:
+            kubernetes.io/ingress.class: external
+            nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          hosts:
+            - host: &hostName photos.${SECRET_DOMAIN}
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - *hostName
+
+    machine-learning:
+      resources:
+        requests:
+          cpu: 500m
+          memory: 4096M
+      persistence:
+        cache:
+          type: pvc
+          existingClaim: immich-machine-learning-cache

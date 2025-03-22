@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: photo-library
+  namespace: media
+  annotations:
+      nfs.io/storage-path: "photo-library"
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs-subdir
+  resources:
+    requests:
+      storage: 2T

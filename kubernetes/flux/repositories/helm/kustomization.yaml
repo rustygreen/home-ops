@@ -16,3 +16,4 @@ resources:
   - ./node-feature-discovery.yaml
   - ./bitnami.yaml
   - ./cloudnative-pg.yaml
+  - ./immich.yaml
