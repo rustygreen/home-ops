@@ -4,6 +4,7 @@ metadata:
   name: immich-postgres
   namespace: media
 spec:
+  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.8-v0.4.0
   instances: 3
   storage:
     size: 100Gi
@@ -12,7 +13,5 @@ spec:
     initdb:
       database: imich
       owner: imich
-      postInitTemplateSQL:
-        - "CREATE EXTENSION IF NOT EXISTS vector;"
   monitoring:
     enablePodMonitor: true
