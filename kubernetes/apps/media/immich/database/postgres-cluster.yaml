@@ -12,5 +12,7 @@ spec:
     initdb:
       database: imich
       owner: imich
+      postInitTemplateSQL:
+        - "CREATE EXTENSION IF NOT EXISTS vector;"
   monitoring:
     enablePodMonitor: true
