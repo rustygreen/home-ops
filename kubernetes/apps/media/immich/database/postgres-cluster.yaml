@@ -6,7 +6,6 @@ metadata:
 spec:
   imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.3-v0.3.0
   instances: 3
-  primaryUpdateStrategy: unsupervised
   storage:
     size: 100Gi
     storageClass: openebs-hostpath
