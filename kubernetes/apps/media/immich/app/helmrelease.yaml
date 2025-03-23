@@ -29,11 +29,7 @@ spec:
       enabled: false
 
     redis:
-      enabled: true
-      persistence:
-        enabled: true
-        storageClass: "openebs-hostpath"
-        size: 10Gi
+      enabled: false
 
     immich:
       metrics:
