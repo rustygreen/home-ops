@@ -29,7 +29,9 @@ spec:
       enabled: false
 
     redis:
-      enabled: false
+      enabled: true
+      global:
+        storageClass: openebs-hostpath
 
     immich:
       metrics:
