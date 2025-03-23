@@ -12,7 +12,7 @@ spec:
     storageClass: openebs-hostpath
   bootstrap:
     initdb:
-      database: imich
-      owner: imich
+      database: immich
+      owner: immich
   monitoring:
     enablePodMonitor: true

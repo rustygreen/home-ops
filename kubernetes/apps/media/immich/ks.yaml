@@ -21,26 +21,26 @@ spec:
   healthChecks:
     - apiVersion: v1
       kind: Service
-      name: imich-postgres-rw
+      name: immich-postgres-rw
       namespace: media
     - apiVersion: v1
       kind: Secret
-      name: imich-postgres-app
+      name: immich-postgres-app
       namespace: media
     - apiVersion: v1
       kind: Pod
       # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-      name: imich-postgres-1
+      name: immich-postgres-1
       namespace: media
     - apiVersion: v1
       kind: Pod
       # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-      name: imich-postgres-2
+      name: immich-postgres-2
       namespace: media
     - apiVersion: v1
       kind: Pod
       # NOTE: this needs to stay in sync w/ the number of instances in the keycloak cluster.
-      name: imich-postgres-3
+      name: immich-postgres-3
       namespace: media
   dependsOn:
     - name: cloudnative-pg
