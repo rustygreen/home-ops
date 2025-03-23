@@ -18,6 +18,8 @@ spec:
           # CREATE EXTENSION earthdistance;
           # CREATE EXTENSION vectors;
   enableSuperuserAccess: true
+  superuserSecret:
+    name: immich-postgres-superuser
   postgresql:
     parameters:
       max_connections: "300"
