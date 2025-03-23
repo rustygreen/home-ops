@@ -48,12 +48,12 @@ spec:
       DB_USERNAME:
         valueFrom:
           secretKeyRef:
-            name: immich-postgres-app
+            name: immich-postgres-superuser
             key: user
       DB_PASSWORD:
         valueFrom:
           secretKeyRef:
-            name: immich-postgres-app
+            name: immich-postgres-superuser
             key: password
       DB_DATABASE_NAME:
         valueFrom:
