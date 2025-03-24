@@ -30,7 +30,7 @@ spec:
 
     redis:
       enabled: true
-      global:
+      persistence:
         storageClass: openebs-hostpath
 
     immich:
