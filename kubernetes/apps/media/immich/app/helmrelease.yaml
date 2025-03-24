@@ -85,13 +85,13 @@ spec:
             external-dns.alpha.kubernetes.io/target: &host "photos.${SECRET_DOMAIN}"
             nginx.ingress.kubernetes.io/proxy-body-size: "0"
           hosts:
-            - host: *hostName
+            - host: *host
               paths:
                 - path: /
                   pathType: Prefix
           tls:
             - hosts:
-                - *hostName
+                - *host
 
     machine-learning:
       resources:
