@@ -31,9 +31,6 @@ spec:
     redis:
       enabled: true
       architecture: standalone
-      # master:
-      #   persistence:
-      #     enabled: false
       global:
         storageClass: openebs-hostpath
       persistence:
@@ -86,9 +83,10 @@ spec:
           className: external
           annotations:
             kubernetes.io/ingress.class: external
+            external-dns.alpha.kubernetes.io/target: &host "photos.${SECRET_DOMAIN}"
             nginx.ingress.kubernetes.io/proxy-body-size: "0"
           hosts:
-            - host: &hostName photos.${SECRET_DOMAIN}
+            - host: *hostName
               paths:
                 - path: /
                   pathType: Prefix
