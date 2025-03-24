@@ -79,7 +79,7 @@ spec:
           memory: 2048M
       ingress:
         main:
-          enabled: true
+          enabled: false
           className: external
           annotations:
             external-dns.alpha.kubernetes.io/target: &host "photos.${SECRET_DOMAIN}"
