@@ -30,8 +30,19 @@ spec:
 
     redis:
       enabled: true
+      architecture: standalone
+      master:
+        persistence:
+          enabled: false
+      global:
+        storageClass: openebs-hostpath
       persistence:
         storageClass: openebs-hostpath
+        retain: false
+      master:
+        persistence:
+          storageClass: openebs-hostpath
+          size: 2Gi
 
     immich:
       metrics:
