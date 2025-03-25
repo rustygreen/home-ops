@@ -94,6 +94,13 @@ spec:
                 - *host
 
     machine-learning:
+      securityContext:
+        fsGroup: 2000
+        fsGroupChangePolicy: "OnRootMismatch"
+        privileged: true
+        runAsGroup: 2000
+        runAsNonRoot: false
+        runAsUser: 2000
       resources:
         requests:
           cpu: 500m
