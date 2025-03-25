@@ -13,9 +13,6 @@ spec:
     initdb:
       database: immich
       owner: immich
-          # CREATE EXTENSION cube;
-          # CREATE EXTENSION earthdistance;
-          # CREATE EXTENSION vectors;
   enableSuperuserAccess: true
   postgresql:
     parameters:
