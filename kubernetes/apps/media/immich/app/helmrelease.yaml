@@ -23,7 +23,7 @@ spec:
       retries: 3
   values:
     image:
-      tag: "v1.129.0"
+      tag: "v1.131.1"
 
     postgres:
       enabled: false
